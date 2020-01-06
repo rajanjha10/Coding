@@ -1,7 +1,5 @@
 //https://www.interviewbit.com/problems/max-distance/
 
-//https://www.interviewbit.com/problems/max-distance/
-
 //O(n)
 int Solution::maximumGap(const vector<int> &A) {
     vector<int> minA(A.size()), maxA(A.size());
