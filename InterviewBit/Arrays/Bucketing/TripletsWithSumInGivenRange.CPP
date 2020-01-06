@@ -1,3 +1,5 @@
+//https://www.interviewbit.com/problems/triplets-with-sum-between-given-range/
+
 void calmax(float a, float *max1A, float *max2A, float *max3A){
     if(a>*max1A){
         *max3A = *max2A;
