@@ -14,3 +14,4 @@ vector<int> Solution::repeatedNumber(const vector<int> &A) {
     vector<int> ans{a,b};
     return ans;
 }
+
