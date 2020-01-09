@@ -70,7 +70,7 @@ vector<int> Solution::solve(vector<int> &A, vector<int> &B) {
 }
 
 //Another way to cal freq of each element as max element
-//using Next greater Index (r) and Previous greater Index(l)
+//using Next greater Index(r) and Previous greater Index(l)
 void frequency_cnt(vector<int> &l, vector<int> &r, vector<int> &A){
     fill(l.begin(), l.end(), -1);
     fill(r.begin(), r.end(), A.size());
