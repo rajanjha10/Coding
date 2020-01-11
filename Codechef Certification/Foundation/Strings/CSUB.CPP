@@ -20,8 +20,8 @@ int main()
 		cin>>s;
 		for(i=0; i<s.size(); i++)
 			if(s[i]=='0')
-            	n--;
-		
+				n--;
+
 		cout<<(n*(n+1))/2<<endl;
 	}
 	return 0;
