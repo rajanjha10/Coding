@@ -22,7 +22,6 @@ int main()
 			if(s[i]=='0')
 				n--;
 		
-
 		cout<<(n*(n+1))/2<<endl;
 	}
 	return 0;
