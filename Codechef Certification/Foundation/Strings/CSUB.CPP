@@ -21,6 +21,7 @@ int main()
 		for(i=0; i<s.size(); i++)
 			if(s[i]=='0')
 				n--;
+		
 
 		cout<<(n*(n+1))/2<<endl;
 	}
