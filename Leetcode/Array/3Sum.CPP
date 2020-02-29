@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/3sum/submissions/
+//https://leetcode.com/problems/3sum/
 
 //Time-100ms memory-14.5MB
 class Solution {

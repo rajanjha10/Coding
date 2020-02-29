@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/container-with-most-water/submissions/
+//https://leetcode.com/problems/container-with-most-water/
 
 class Solution {
 public:

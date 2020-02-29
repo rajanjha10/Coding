@@ -12,3 +12,17 @@ public:
         return {};
     }
 };
+
+//Using Unordered Map
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> a;
+        for(int i=0; i<nums.size(); i++){
+            if(a[target-nums[i]]>0)
+                return {a[target-nums[i]]-1, i};
+            a[nums[i]]=i+1;
+        }
+        return {};
+    }
+};
