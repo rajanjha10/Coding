@@ -14,33 +14,6 @@ int main()
     int t;
     cin>>t;
     while(t--){
-        LL i, ans=0, cnt=0;
-        string s;
-        cin>>s;
-        for(int i=0; i<s.size(); i++){
-            if(s[i]=='<')
-                cnt++;
-            else{
-                cnt--;
-                if(cnt==0)
-                    ans = i+1;
-                else if(cnt<0)
-                    break;
-            }
-        }
-
-        cout<<ans<<endl;
-    }
-    return 0;    
-}
-
-//Using Stack
-int main()
-{
-    fastio;
-    int t;
-    cin>>t;
-    while(t--){
     	LL i, ans=0, cntgt=0;
     	string s;
     	stack<char> tags;
