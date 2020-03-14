@@ -56,7 +56,7 @@ uint64_t mod(string num, int a)
 
 string eval(int n){
     if(n<0)
-		return "";
+        return "";
 	if(n==0)
 		return "1";
 	if(!memo[n].empty())
@@ -76,7 +76,7 @@ int main()
 	cin>>t;
 	for(int i=0; i<=1000; i++)
 	    memo[i] = "";
-    
+
 	memo[1]="1";
 	eval(1001);
 
