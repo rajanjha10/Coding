@@ -1,3 +1,5 @@
+//https://www.codechef.com/problems/FICE
+
 #include<bits/stdc++.h>
 #define LL long long
 #define MOD 1000000007
@@ -74,6 +76,7 @@ int main()
 	cin>>t;
 	for(int i=0; i<=1000; i++)
 	    memo[i] = "";
+    
 	memo[1]="1";
 	eval(1001);
 
