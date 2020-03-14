@@ -62,11 +62,11 @@ string eval(int n){
     if(!memo[n].empty())
         return memo[n];
     
-	string res="";
-	for(int i=1; i<=n; i+=2)
-		res = sum(res, eval(n-i));
+    string res="";
+    for(int i=1; i<=n; i+=2)
+        res = sum(res, eval(n-i));
 
-	return memo[n]=res;
+    return memo[n]=res;
 }
 
 int main()
