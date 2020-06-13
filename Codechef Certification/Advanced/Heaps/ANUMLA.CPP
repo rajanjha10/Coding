@@ -18,6 +18,7 @@ int main()
 		cin>>n;
 		multiset<LL> mh;
 		LL a;
+		
 		for(int i=0; i<(1<<n); i++){
 			cin>>a;
 			if(a==0)

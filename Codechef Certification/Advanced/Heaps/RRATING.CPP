@@ -11,36 +11,38 @@ using namespace std;
 int main()
 {
 	fastio;
-	LL n, op, x, sz=0;
+	LL n, x, sz=0;
 	cin>>n;
-	multiset<LL, greater<LL> > maxHeap;
-	multiset<LL> minHeap;
-	
+	priority_queue<LL> max;
+	priority_queue<LL, vector<LL>, greater<LL> > min;
+
 	while(n--){
+		int op;
 		cin>>op;
 		if(op==1){
 			cin>>x;
 			sz++;
-			
-			if(!minHeap.empty() && x>*minHeap.begin()){
-			    maxHeap.insert(*minHeap.begin());
-			    minHeap.erase(minHeap.begin());
-				minHeap.insert(x);
-			}
-			else
-			    maxHeap.insert(x);
-			
-			while(minHeap.size()<floor(sz/3)){
-				minHeap.insert(*maxHeap.begin());
-				maxHeap.erase(maxHeap.begin());
-			}
+			max.push(x);
 		}
-		else{
-			if(minHeap.empty())
-				cout<<"No reviews yet"<<endl;
+		else if(op==2){
+			if(sz<3)
+				cout<<"No reviews yet"<<"\n";
 			else
-				cout<<*minHeap.begin()<<endl;
+				cout<<min.top()<<"\n";
 		}
+
+		while(min.size()<sz/3){
+			min.push(max.top());
+			max.pop();
+		}
+
+		while(!max.empty() && !min.empty() && max.top()>min.top()){
+			LL y = min.top();
+			min.pop();
+			min.push(max.top());
+			max.pop();
+			max.push(y);
+		}	
 	}
 
 	return 0;

@@ -21,6 +21,7 @@ int main()
 		while(n--){
 			cin>>a;
 			minHeap.insert(a);
+
 			if(minHeap.size()>k)
 				minHeap.erase(minHeap.begin());
 			
@@ -29,7 +30,8 @@ int main()
 			else
 				cout<<*minHeap.begin()<<" ";
 		}
-		cout<<endl;
+
+		cout<<"\n";
 	}
 
 	return 0;

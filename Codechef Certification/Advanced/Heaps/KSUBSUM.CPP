@@ -16,29 +16,28 @@ int main()
 	while(t--){
 		int n, k1, k2, k3;
 		cin>>n>>k1>>k2>>k3;
-		multiset<LL> mh;
-		LL a[n+1];
-		
-		a[0] = 0;
-		for(int i=1; i<=n; i++){
-			cin>>a[i];
-			a[i] += a[i-1];
-		}
 
-		for(int i=1; i<=n; i++){
-			for(int j=i; j<=n; j++){
-				LL x = a[j] - a[i-1];
-				if(mh.size()<k3)
-					mh.insert(x);
-				else if(x>*mh.begin()){
-					mh.erase(mh.begin());
-					mh.insert(x);
+		int a[n];
+		read(a, n);
+
+		multiset<LL> m;
+		for(int i=0; i<n; i++){
+			LL s = 0;
+			for(int j=i; j<n; j++){
+				s += a[j];
+				if(m.size()<k3)
+					m.insert(s);
+				else if(s > *m.begin()){
+					m.erase(m.begin());
+					m.insert(s);
 				}
 			}
 		}
 
-		vector<LL> ans(mh.rbegin(), mh.rend());
-		cout<<ans[k1-1]<<" "<<ans[k2-1]<<" "<<ans[k3-1]<<endl;
+		vector<LL> ans(m.rbegin(), m.rend());
+		cout<<ans[k1-1]<<" "<<ans[k2-1]<<" "<<ans[k3-1]<<"\n";
+
 	}
+
 	return 0;
 }
