@@ -8,37 +8,37 @@
 #define read(a, n) for(LL e=0; e<n; e++) cin>>a[e];
 using namespace std;
 
-vector<LL> id, sz, cost;
+const int maxN = 10e5; 
+int id[maxN], sz[maxN], cost[maxN];
 
-void initialize(LL n){
-	for(LL i=0; i<n; i++){
-		id.push_back(i);
-		sz.push_back(1);
+void initialize(int n){
+	for(int i=0; i<n; i++){
+		id[i] = i;
+		sz[i] = 1;
 	}
 }
 
-LL root(LL i){
-	while(id[i]!=i){
-		id[i] = id[id[i]];
-		i = id[i];
+int root(int x){
+	while(x!=id[x]){
+		id[x] = id[id[x]];
+		x = id[x];
 	}
 
-	return i;
+	return x;
 }
 
-void unionAB(LL a, LL b){
-	LL ra = root(a);
-	LL rb = root(b);
-	if(ra!=rb){
-		if(sz[ra]>sz[rb]){
-			id[rb] = ra;
-			sz[ra] += rb;
-			cost[ra] = min(cost[ra], cost[rb]);
+void unionxy(int x, int y){
+	x = root(x);
+	y = root(y);
+
+	if(x!=y){
+		if(sz[x]>sz[y]){
+			id[y] = x;
+			sz[x] += sz[y];
 		}
 		else{
-			id[ra] = rb;
-			sz[rb] += ra;
-			cost[rb] = min(cost[ra], cost[rb]);
+			id[x] = y;
+			sz[y] += sz[x];
 		}
 	}
 }
@@ -46,49 +46,51 @@ void unionAB(LL a, LL b){
 int main()
 {
 	fastio;
-	LL n, m, c;
+	int n;
+	LL m;
 	cin>>n>>m;
 	initialize(n);
-	LL a[m], b[m];
-	for(LL i=0; i<m; i++)
-		cin>>a[i]>>b[i];
-	
-	for(LL i=0; i<n; i++){
-		cin>>c;
-		if(c>=0)
-			cost.push_back(c);
-		else
-			cost.push_back(INT_MAX);
-	}
-	
-	for(LL i=0; i<m; i++)
-		unionAB(a[i]-1, b[i]-1);
-	
-	map<LL, LL> minCost;
-	bool flag=0;
-	for(LL i=0; i<n; i++){
-		LL r = root(i);
-		if(cost[r]==INT_MAX)
-			flag=1;
-		minCost[r] = cost[r];	
+
+	for(LL i=0; i<m; i++){
+		int u, v;
+		cin>>u>>v;
+		unionxy(u-1, v-1);
 	}
 
-	if(flag){
-		if(minCost.size()==1)
-			cout<<0<<endl;
-		else
-			cout<<-1<<endl;
-
-		return 0;
+	read(cost, n);
+	for(int i=0; i<n; i++){
+		if(cost[i]<0)
+			cost[i] = INT_MAX;
 	}
 
-	LL ans = 0, mn=INT_MAX;
-	for(auto it=minCost.begin(); it!=minCost.end(); it++){
-		mn = min(mn, it->second);
-		ans += it->second;
+	set<int> s;
+
+	for(int i=0; i<n; i++){
+		int r = root(i);
+		cost[r] = min(cost[r], cost[i]);
+		s.insert(r);
 	}
-	ans = mn*(minCost.size()-1) + ans - mn;
-	
-	cout<<ans<<endl;
+
+	LL ans = 0;
+	int minCost = INT_MAX;
+	for(auto i: s){
+		if(cost[i]==INT_MAX){
+			ans = -1;
+			break;
+		}
+
+		minCost = min(minCost, cost[i]);
+		ans += cost[i];
+	}
+
+	if(~ans){
+		ans -= minCost;
+		ans += (s.size()-1)*(LL)minCost;
+	}
+	else if(s.size()==1)
+		ans = 0;
+
+	cout<<ans<<"\n";
+
 	return 0;
 }
